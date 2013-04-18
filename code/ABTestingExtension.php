@@ -31,7 +31,7 @@ class ABTestingExtension extends Extension
         if ($num === 0) {
            throw new RuntimeException('Need at least one argument to ABTestingExtension::getABTesting');
         } elseif ($num === 1) {
-            $args = explode('_', $args);
+            $args = explode('_', $args[0]);
         }
         list($flag, $val) = $args;
 
