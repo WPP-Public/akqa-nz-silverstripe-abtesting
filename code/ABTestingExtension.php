@@ -21,12 +21,19 @@ class ABTestingExtension extends Extension
         $this->allowed = $allowed;
     }
     /**
-     * @param $vars
+     * @throws RuntimeException
      * @return bool
      */
-    public function getABTesting($vars)
+    public function getABTesting()
     {
-        list($flag, $val) = explode('_', $vars);
+        $args = func_get_args();
+        $num = count($args);
+        if ($num === 0) {
+           throw new RuntimeException('Need at least one argument to ABTestingExtension::getABTesting');
+        } elseif ($num === 1) {
+            $args = explode('_', $args);
+        }
+        list($flag, $val) = $args;
 
         if (isset($_GET[$flag]) && in_array($_GET[$flag], $this->allowed)) {
             $flag = $_GET[$flag];
