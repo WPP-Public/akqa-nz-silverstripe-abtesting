@@ -5,6 +5,17 @@
  */
 class ABTestingExtension extends Extension
 {
+
+    /**
+     * Required for DataObject extensions
+     *
+     * @return array
+     */
+    public function extraStatics()
+    {
+        return array();
+    }
+
     /**
      * @var array
      */
