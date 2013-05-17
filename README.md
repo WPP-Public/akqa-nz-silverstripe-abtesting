@@ -6,6 +6,16 @@
 
 ## Usage
 
+Add the following to your root level Page SilverStripe template
+
+```html
+<% if ABTestScript %>
+	$ABTestScript
+<% end_if %>
+```
+
+Decorate the object/page you wish to test with the ABTestingExtension
+
 ```php
 class Page_Controller extends ContentController
 {
@@ -14,6 +24,8 @@ class Page_Controller extends ContentController
     );
 }
 ```
+
+Set up the variations for the test
 
 For SilverStripe 2.4
 
