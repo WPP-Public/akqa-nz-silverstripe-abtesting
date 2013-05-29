@@ -1,9 +1,9 @@
 <?php
 
 /**
- * Class ABTestingPageExtension
+ * Class ABTestingConfigExtension
  */
-class ABTestingPageExtension extends Extension
+class ABTestingConfigExtension extends Extension
 {
 
     /**
@@ -15,8 +15,8 @@ class ABTestingPageExtension extends Extension
     {
         return array(
             'db' => array(
-                'ABTestPage' => 'Boolean',
-                'ABTestInlineScript' => 'Text'
+                'ABTestGlobalScript' => 'Text',
+                'ABGlobalTest' => 'Boolean'
             )
         );
     }
@@ -31,16 +31,16 @@ class ABTestingPageExtension extends Extension
 
         $member = Member::currentUser();
 
-        // lock down testing for heyday developers only
+        // lock down testing for the administrator only
         if ($member->Email == Email::getAdminEmail()) {
 
             $fields->addFieldToTab(
                 'Root.ABTesting',
-                new CheckboxField('ABTestPage', 'This is a page currently undergoing AB testing.')
+                new CheckboxField('ABGlobalTest', 'This site currently undergoing AB testing.')
             );
             $fields->addFieldToTab(
                 'Root.ABTesting',
-                new TextareaField('ABTestInlineScript', 'Inline Script for AB Testing (from Google content experiments)')
+                new TextareaField('ABTestGlobalScript', 'Inline Script for AB Testing (from Google content experiments)')
             );
 
         }
@@ -52,14 +52,14 @@ class ABTestingPageExtension extends Extension
      *
      * @return mixed
      */
-    public function getABTestScript()
+    public function getABTestGlobalScript()
     {
 
-        if ($this->owner->ABTestPage) {
+        if ($this->owner->getField('ABGlobalTest') != 0) {
 
-            if ($this->owner->ABTestInlineScript) {
+            if (!is_null($this->owner->getField('ABTestGlobalScript'))) {
 
-                return $this->owner->ABTestInlineScript;
+                return $this->owner->getField('ABTestGlobalScript');
 
             }
 

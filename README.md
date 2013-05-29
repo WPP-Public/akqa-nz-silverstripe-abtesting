@@ -11,6 +11,10 @@ Add the following to your root level Page SilverStripe template
 ```html
 <% if ABTestScript %>
 	$ABTestScript
+<% else %>
+	<% if SiteConfig.ABTestGlobalScript %>
+		$SiteConfig.ABTestGlobalScript
+	<% end_if %>
 <% end_if %>
 ```
 
