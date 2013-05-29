@@ -59,7 +59,10 @@ class ABTestingPageExtension extends Extension
 
             if ($this->owner->ABTestInlineScript) {
 
-                return $this->owner->ABTestInlineScript;
+                $html = new HTMLText();
+                $html->setValue($this->owner->ABTestInlineScript);
+
+                return $html;
 
             }
 
