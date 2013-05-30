@@ -16,7 +16,7 @@ class ABTestingConfigExtension extends Extension
         return array(
             'db' => array(
                 'ABGlobalTest' => 'Boolean',
-                'ABTestGlobalScript' => 'HTMLText'
+                'ABTestGlobalScript' => 'Text'
             )
         );
     }
@@ -59,7 +59,9 @@ class ABTestingConfigExtension extends Extension
 
             if (!is_null($this->owner->getField('ABTestGlobalScript'))) {
 
-                return $this->owner->getField('ABTestGlobalScript');
+                $html = new HTMLText();
+                $html->setValue($this->owner->getField('ABTestGlobalScript'));
+                return $html;
 
             }
 

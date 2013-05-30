@@ -16,7 +16,7 @@ class ABTestingPageExtension extends Extension
         return array(
             'db' => array(
                 'ABTestPage' => 'Boolean',
-                'ABTestInlineScript' => 'HTMLText'
+                'ABTestInlineScript' => 'Text'
             )
         );
     }
@@ -59,7 +59,9 @@ class ABTestingPageExtension extends Extension
 
             if ($this->owner->ABTestInlineScript) {
 
-                return $this->owner->ABTestInlineScript;
+                $html = new HTMLText();
+                $html->setValue($this->owner->ABTestInlineScript);
+                return $html;
 
             }
 
