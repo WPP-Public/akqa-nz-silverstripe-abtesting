@@ -3,30 +3,20 @@
 /**
  * Class ABTestingConfigExtension
  */
-class ABTestingConfigExtension extends Extension
+class ABTestingConfigExtension extends DataExtension
 {
 
-    /**
-     * Required for DataObject extensions
-     *
-     * @return array
-     */
-    public function extraStatics()
-    {
-        return array(
-            'db' => array(
-                'ABGlobalTest' => 'Boolean',
-                'ABTestGlobalScript' => 'Text'
-            )
-        );
-    }
+    public static $db = array(
+        'ABGlobalTest' => 'Boolean',
+        'ABTestGlobalScript' => 'Text'
+    );
 
     /**
      * Update the CMS fields on the extended object
      *
-     * @param FieldSet $fields
+     * @param FieldList $fields
      */
-    public function updateCMSFields(FieldSet &$fields)
+    public function updateCMSFields(FieldList $fields)
     {
 
         $member = Member::currentUser();

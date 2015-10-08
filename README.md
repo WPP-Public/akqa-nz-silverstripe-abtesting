@@ -3,6 +3,8 @@
 ## Installation (with composer)
 
     $ composer require heyday/silverstripe-abtesting:~0.1
+    
+    For 2.4 see the tag 0.1.7
 
 ## Usage
 
